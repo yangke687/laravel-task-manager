@@ -24,6 +24,7 @@
             {!!Form::file('thumbnail', ['class' => 'form-control'])!!}
           </div>
       </div>
+      @include('errors/_errors')
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         {!!Form::submit('Create Project', ['class' => 'btn btn-primary'])!!}
