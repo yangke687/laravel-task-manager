@@ -28,6 +28,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+      $projects = \Auth::user()->projects()->get();
+      return view('home', compact('projects'));
     }
 }

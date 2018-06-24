@@ -12,7 +12,7 @@ class ProjectsRepository
       $file = $request->thumbnail;
       $name = str_random(10) . '.jpg';
       $path = public_path() . '/thumbnails/' . $name;
-      Image::make($file)->resize(261, 98)->encode('jpg')->save($path);
+      Image::make($file)->resize(261, 135)->encode('jpg')->save($path);
     }
 
     $request->user()->projects()->create([

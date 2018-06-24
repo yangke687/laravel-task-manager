@@ -25,7 +25,7 @@ class CreateProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:projects',
-            'thumbnail' => 'image|dimensions:min_width:261,min_height:98',
+            'thumbnail' => 'image|dimensions:min_width:261,min_height:135',
         ];
     }
 }
