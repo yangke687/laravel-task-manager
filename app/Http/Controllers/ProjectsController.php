@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Image;
+use App\Repositories\ProjectsRepository;
 
 class ProjectsController extends Controller
 {
+    protected $repo;
+
+    public function __construct(ProjectsRepository $repo) {
+      $this->repo = $repo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,17 +40,8 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-      if($request->hasFile('thumbnail')) {
-          $file = $request->thumbnail;
-          $name = str_random(10) . '.jpg';
-          $path = public_path() . '/thumbnails/' . $name;
-          Image::make($file)->resize(261, 98)->encode('jpg')->save($path);
-        }
-
-      $request->user()->projects()->create([
-          'name' => $request->name,
-          'thumbnail' => isset($name)? $name: null,
-      ]);
+      $this->repo->newProject($request);
+      return 'Project has been created successfully';
     }
 
     /**
