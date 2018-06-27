@@ -38,6 +38,15 @@
   >li{
     float: right;
     margin-right: 3px;
+    .fa-btn{
+      color: #d9534f;
+    }
+    .btn{
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+    }
   }
 }
 

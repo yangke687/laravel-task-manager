@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ProjectsRepository;
 use App\Http\Requests\CreateProjectRequest;
+use App\Project;
+use Redirect;
 
 class ProjectsController extends Controller
 {
@@ -42,7 +44,7 @@ class ProjectsController extends Controller
     public function store(CreateProjectRequest $request)
     {
       $this->repo->newProject($request);
-      return 'Project has been created successfully';
+      return Redirect::back();
     }
 
     /**
@@ -87,6 +89,7 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::find($id)->delete();
+        return Redirect::back();
     }
 }

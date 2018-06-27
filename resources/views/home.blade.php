@@ -9,8 +9,10 @@
           <a class="project-link pos-r" href="{{route('projects.show', $project->id)}}">
             <!-- icon btns -->
             <ul class="icon-bar pos-a">
-              <li><i class="fa fa-btn fa-close"></i></li>
-              <li><i class="fa fa-btn fa-cog"></i></li>
+              <li onclick="event.stopPropagation();">
+                @include('projects._deleteForm')
+              </li>
+              <li onclick="event.stopPropagation();"><i class="fa fa-btn fa-cog"></i></li>
             </ul>
             <div class="card mb-4">
               @if($project->thumbnail)
@@ -39,6 +41,10 @@
 <script>
   $(document).ready(function () {
     $('.icon-bar').hide();
+    $('.icon-bar').click(function(evt){
+      evt.preventDefault();
+      evt.stopPropagation();
+    });
     $('.project-link').hover(function(){
       $(this).find('.icon-bar').toggle();
     })
