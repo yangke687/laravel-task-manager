@@ -6,7 +6,12 @@
      @if(count($projects))
       @foreach($projects as $project)
         <div class="col-4">
-          <a class="project-link" href="{{route('projects.show', $project->id)}}">
+          <a class="project-link pos-r" href="{{route('projects.show', $project->id)}}">
+            <!-- icon btns -->
+            <ul class="icon-bar pos-a">
+              <li><i class="fa fa-btn fa-close"></i></li>
+              <li><i class="fa fa-btn fa-cog"></i></li>
+            </ul>
             <div class="card mb-4">
               @if($project->thumbnail)
                 <img class="card-img-top" src="{{ asset('thumbnails/' . $project->thumbnail) }}" alt="{{$project->name}}">
@@ -28,4 +33,15 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('custom-js')
+<script>
+  $(document).ready(function () {
+    $('.icon-bar').hide();
+    $('.project-link').hover(function(){
+      $(this).find('.icon-bar').toggle();
+    })
+  });
+</script>
 @endsection
