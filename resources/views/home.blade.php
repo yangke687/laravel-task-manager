@@ -6,13 +6,18 @@
      @if(count($projects))
       @foreach($projects as $project)
         <div class="col-4">
-          <a class="project-link pos-r" href="{{route('projects.show', $project->id)}}">
+          <div class="project-link pos-r" data-url="{{route('projects.show', $project->id)}}">
             <!-- icon btns -->
             <ul class="icon-bar pos-a">
-              <li onclick="event.stopPropagation();">
+              <li>
                 @include('projects._deleteForm')
               </li>
-              <li onclick="event.stopPropagation();"><i class="fa fa-btn fa-cog"></i></li>
+              <!-- edit form modal trigger -->
+              <li>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editFormModal-{{$project->id}}">
+                  <i class="fa fa-btn fa-cog"></i>
+                </button>
+              </li>
             </ul>
             <div class="card mb-4">
               @if($project->thumbnail)
@@ -24,7 +29,9 @@
                 </p>
               </div>
             </div>
-          </a>
+          </div>
+          <!-- edit form modal -->
+          @include('projects._editForm')
         </div>
       @endforeach
     @endif
@@ -41,10 +48,6 @@
 <script>
   $(document).ready(function () {
     $('.icon-bar').hide();
-    $('.icon-bar').click(function(evt){
-      evt.preventDefault();
-      evt.stopPropagation();
-    });
     $('.project-link').hover(function(){
       $(this).find('.icon-bar').toggle();
     })
