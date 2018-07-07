@@ -3,20 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\ProjectsRepository;
-use App\Http\Requests\CreateProjectRequest;
-use App\Http\Requests\EditProjectRequest;
-use App\Project;
+use \App\Task;
 use Redirect;
-use Auth;
 
-class ProjectsController extends Controller
+class TasksController extends Controller
 {
-    protected $repo;
-
-    public function __construct(ProjectsRepository $repo) {
-      $this->repo = $repo;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -43,9 +34,14 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateProjectRequest $request)
+    public function store(Request $request)
     {
-      $this->repo->newProject($request);
+      Task::create([
+        'title' => $request->title,
+        'project_id' => $request->project,
+        'is_completed' => false,
+      ]);
+
       return Redirect::back();
     }
 
@@ -55,10 +51,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
-      $project = Auth::user()->projects()->where('name', $name)->first();
-      return view('projects.show', compact('project'));
+        //
     }
 
     /**
@@ -79,10 +74,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditProjectRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $this->repo->updateProject($request, $id);
-        return Redirect::back();
+        //
     }
 
     /**
@@ -93,7 +87,6 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        Project::find($id)->delete();
-        return Redirect::back();
+        //
     }
 }

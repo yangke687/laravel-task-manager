@@ -14,7 +14,7 @@
 Route::get('/', 'HomeController@welcome');
 
 Route::get('test', function(){
-	
+
 });
 
 Auth::routes();
@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('projects', 'ProjectsController');
+
+Route::resource('tasks', 'TasksController');

@@ -25,7 +25,11 @@
               @endif
               <div class="card-body">
                 <p class="card-text">
-                  <h4 class="text-center">{{$project->name}}</h4>
+                  <h4 class="text-center">
+                    <a style="color: inherit; text-decoration: none;" href="{{url('/projects/'.$project->name)}}">
+                      {{$project->name}}
+                    </a>
+                  </h4>
                 </p>
               </div>
             </div>
