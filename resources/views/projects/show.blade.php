@@ -18,6 +18,7 @@
           @foreach($todos as $task)
           <tr>
             <td>{{$task->title}}</td>
+            <td>@include('tasks._checkForm')</td>
           </tr>
           @endforeach
         </table>
@@ -27,6 +28,7 @@
           @foreach($dones as $task)
           <tr>
             <td>{{$task->title}}</td>
+            <td><span class="badge badge-primary">Ended</span></td>
           </tr>
           @endforeach
         </table>

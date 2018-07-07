@@ -89,4 +89,11 @@ class TasksController extends Controller
     {
         //
     }
+
+    public function check($id) {
+      $task = Task::findOrFail($id);
+      $task->is_completed = true;
+      $task->save();
+      return Redirect::back();
+    }
 }
