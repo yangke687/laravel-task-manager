@@ -92,7 +92,10 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $task = Task::findOrFail($id);
+      $task->delete();
+
+      return Redirect::back();
     }
 
     public function check($id) {
