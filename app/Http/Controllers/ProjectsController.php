@@ -58,7 +58,9 @@ class ProjectsController extends Controller
     public function show($name)
     {
       $project = Auth::user()->projects()->where('name', $name)->first();
-      return view('projects.show', compact('project'));
+      $todos = $project->tasks()->where('is_completed', 0)->get();
+      $dones = $project->tasks()->where('is_completed', 1)->get();
+      return view('projects.show', compact('project', 'todos', 'dones'));
     }
 
     /**
