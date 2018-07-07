@@ -76,7 +76,12 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $task = Task::findOrFail($id);
+      $task->title = $request->title;
+      $task->project_id = $request->parent_project;
+      $task->save();
+
+      return Redirect::back();
     }
 
     /**
