@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container">
+  <div class="container tasks-tabs">
     <!-- tasks nav tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
@@ -17,10 +17,10 @@
         <table class="table table-striped">
           @foreach($todos as $task)
           <tr>
-            <td>{{$task->title}}</td>
-            <td>@include('tasks._checkForm')</td>
-            <td>@include('tasks._editForm')</td>
-            <td>@include('tasks._deleteForm')</td>
+            <td class="first-cell">{{$task->title}}</td>
+            <td class="icon-cell">@include('tasks._checkForm')</td>
+            <td class="icon-cell">@include('tasks._editForm')</td>
+            <td class="icon-cell">@include('tasks._deleteForm')</td>
           </tr>
           @endforeach
         </table>
