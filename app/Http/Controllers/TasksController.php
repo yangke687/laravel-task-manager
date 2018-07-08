@@ -7,6 +7,7 @@ use App\Http\Requests\CreateTaskRequest;
 use App\Http\Requests\EditTaskRequest;
 use \App\Task;
 use Redirect;
+use Auth;
 
 class TasksController extends Controller
 {
@@ -17,7 +18,11 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+      $todos = Auth::user()->tasks()->where('is_completed', 0)->paginate(10);
+      $dones = Auth::user()->tasks()->where('is_completed', 1)->paginate(10);
+      $projects = Auth::user()->projects()->pluck('name', 'id'); // column, key
+
+      return view('tasks.index', compact('todos','dones','projects'));
     }
 
     /**
