@@ -25,6 +25,13 @@
           {!!Form::label('parent_project', 'Parent Projects List', ['class' => 'control-label'])!!}
           {!!Form::select('parent_project', $projects, $project->id, ['class' => 'form-control'])!!}
         </div>
+        @if($errors->has('title'))
+          <ul class="alert alert-danger">
+            @foreach($errors->get('title') as $err)
+              <li>{{ $err }}</li>
+            @endforeach
+          </ul>
+        @endif
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

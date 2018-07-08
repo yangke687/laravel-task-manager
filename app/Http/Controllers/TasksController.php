@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\EditTaskRequest;
 use \App\Task;
 use Redirect;
 
@@ -38,7 +39,7 @@ class TasksController extends Controller
     public function store(CreateTaskRequest $request)
     {
       Task::create([
-        'title' => $request->title,
+        'title' => $request->new_title,
         'project_id' => $request->project,
         'is_completed' => false,
       ]);
@@ -75,7 +76,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditTaskRequest $request, $id)
     {
       $task = Task::findOrFail($id);
       $task->title = $request->title;
