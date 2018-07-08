@@ -23,7 +23,7 @@
         <!-- task parent project -->
         <div class="form-group">
           {!!Form::label('parent_project', 'Parent Projects List', ['class' => 'control-label'])!!}
-          {!!Form::select('parent_project', $projects, $project->id, ['class' => 'form-control'])!!}
+          {!!Form::select('parent_project', $projects, null, ['class' => 'form-control'])!!}
         </div>
         @if($errors->has('title'))
           <ul class="alert alert-danger">
